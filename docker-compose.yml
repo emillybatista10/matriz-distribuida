@@ -1,0 +1,59 @@
+services:
+  prog1:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.prog1
+    container_name: matriz_prog1
+    volumes:
+      - dados:/app/dados
+    environment:
+      - MATRIX_SIZE=${MATRIX_SIZE:-100}
+      - NUM_MATRICES=${NUM_MATRICES:-5}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - PYTHONUNBUFFERED=1
+    command: ["sh", "-c", "python prog1.py $${MATRIX_SIZE} $${NUM_MATRICES}"]
+    networks:
+      - matriz-network
+
+  prog2:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.prog2
+    container_name: matriz_prog2
+    volumes:
+      - dados:/app/dados
+    environment:
+      - MATRIX_SIZE=${MATRIX_SIZE:-100}
+      - NUM_MATRICES=${NUM_MATRICES:-5}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - PYTHONUNBUFFERED=1
+    depends_on:
+      - prog1
+    networks:
+      - matriz-network
+
+  prog3:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.prog3
+    container_name: matriz_prog3
+    volumes:
+      - dados:/app/dados
+      - resultados:/app/resultados
+    environment:
+      - MATRIX_SIZE=${MATRIX_SIZE:-100}
+      - NUM_MATRICES=${NUM_MATRICES:-5}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - PYTHONUNBUFFERED=1
+    depends_on:
+      - prog2
+    networks:
+      - matriz-network
+
+volumes:
+  dados:
+  resultados:
+
+networks:
+  matriz-network:
+    driver: bridge
