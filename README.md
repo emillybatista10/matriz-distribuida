@@ -3,7 +3,7 @@
 
 Sistema distribuído para processamento de matrizes utilizando Docker e comunicação TCP entre containers.
 
-## 📋 Descrição
+##  Descrição
 
 Este projeto implementa um sistema distribuído composto por três programas que trabalham em conjunto para processar matrizes:
 
@@ -11,7 +11,7 @@ Este projeto implementa um sistema distribuído composto por três programas que
 - **prog2.py**: Calcula determinante e matriz inversa, envia resultados para prog3
 - **prog3.py**: Exibe resultados formatados com estatísticas de tempo
 
-## 🏗️ Arquitetura
+##  Arquitetura
 
 ```
 ┌─────────────┐  TCP:8001  ┌─────────────┐  TCP:8002  ┌─────────────┐
@@ -20,7 +20,7 @@ Este projeto implementa um sistema distribuído composto por três programas que
 └─────────────┘            └─────────────┘            └─────────────┘
 ```
 
-## 🚀 Execução Rápida
+## Execução Rápida
 
 ### Usando Docker Compose (Recomendado)
 
@@ -68,7 +68,7 @@ matriz-distribuida/
 └── README.md             # Documentação
 ```
 
-## ⚙️ Configuração
+##  Configuração
 
 ### Variáveis de Ambiente (.env)
 
@@ -91,7 +91,7 @@ DATA_VOLUME=matriz-data
 - Python 3.11+ (para execução local)
 - numpy >= 1.26.0
 
-## 🔧 Desenvolvimento
+## Desenvolvimento
 
 ### Logs e Debugging
 
@@ -106,7 +106,7 @@ docker compose logs prog1
 docker compose down
 ```
 
-## 📊 Funcionalidades
+##  Funcionalidades
 
 ### prog1.py (Gerador)
 - Gera matrizes quadradas com valores aleatórios (1-10)
